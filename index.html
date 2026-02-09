@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تسجيل الدخول | نظام إدارة الحلقات والمعهد الشرعي</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="login-page">
+      <div class="login-card">
+        <h1 class="js-institute-name">نظام إدارة الحلقات والمعهد الشرعي</h1>
+        <p class="note">أدخل بيانات المدير للوصول إلى المنصة.</p>
+        <form id="loginForm" style="margin-top: 24px; display: grid; gap: 16px;">
+          <div>
+            <label for="username">اسم المستخدم</label>
+            <input id="username" type="text" placeholder="admin" required />
+          </div>
+          <div>
+            <label for="password">كلمة المرور</label>
+            <input id="password" type="password" placeholder="••••••" required />
+          </div>
+          <button class="btn btn-primary" type="submit">تسجيل الدخول</button>
+        </form>
+      </div>
+    </div>
+    <script src="js/db.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+  </body>
+</html>

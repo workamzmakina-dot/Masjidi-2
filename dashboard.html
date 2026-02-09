@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>لوحة التحكم | نظام إدارة الحلقات والمعهد الشرعي</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <aside class="sidebar">
+        <div class="logo js-institute-name">نظام إدارة الحلقات والمعهد الشرعي</div>
+        <nav>
+          <a href="dashboard.html">لوحة التحكم</a>
+          <a href="students.html">الطلاب</a>
+          <a href="programs.html">البرامج</a>
+          <a href="attendance.html">الحضور</a>
+          <a href="exams.html">الامتحانات</a>
+          <a href="reports.html">التقارير</a>
+          <a href="settings.html">الإعدادات</a>
+          <a href="backup.html">النسخ الاحتياطي</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topbar">
+          <div class="brand">
+            <img class="js-institute-logo" alt="الشعار" />
+            <span>لوحة التحكم الرئيسية</span>
+          </div>
+          <div class="actions">
+            <button class="btn btn-outline" data-action="logout">تسجيل الخروج</button>
+          </div>
+        </div>
+        <div class="content">
+          <div class="grid grid-3">
+            <div class="card stat-card">
+              <span>إجمالي الطلاب</span>
+              <strong id="studentsCount">0</strong>
+            </div>
+            <div class="card stat-card">
+              <span>البرامج النشطة</span>
+              <strong id="programsCount">0</strong>
+            </div>
+            <div class="card stat-card">
+              <span>الامتحانات</span>
+              <strong id="examsCount">0</strong>
+            </div>
+          </div>
+          <div class="grid grid-3">
+            <div class="card stat-card">
+              <span>سجلات الحضور</span>
+              <strong id="attendanceCount">0</strong>
+            </div>
+            <div class="card stat-card">
+              <span>الطالب المتميز هذا الشهر</span>
+              <strong id="topStudentName">-</strong>
+              <small id="topStudentScore" class="note"></small>
+            </div>
+            <div class="card stat-card">
+              <span>السنة الدراسية</span>
+              <strong class="js-academic-year">-</strong>
+            </div>
+          </div>
+          <div class="card">
+            <h3>ملخص سريع</h3>
+            <p class="note">
+              يتم احتساب الطالب المتميز شهريًا بناءً على نسبة الحضور ومتوسط الدرجات. يمكن تعديل الإعدادات من صفحة الإعدادات.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/db.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const settings = (await DB.getAll("settings"))[0];
+        const yearEl = document.querySelector(".js-academic-year");
+        if (settings && yearEl) yearEl.textContent = settings.academicYear || "-";
+      });
+    </script>
+  </body>
+</html>

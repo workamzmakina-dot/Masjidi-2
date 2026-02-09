@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الإعدادات | نظام إدارة الحلقات والمعهد الشرعي</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <aside class="sidebar">
+        <div class="logo js-institute-name">نظام إدارة الحلقات والمعهد الشرعي</div>
+        <nav>
+          <a href="dashboard.html">لوحة التحكم</a>
+          <a href="students.html">الطلاب</a>
+          <a href="programs.html">البرامج</a>
+          <a href="attendance.html">الحضور</a>
+          <a href="exams.html">الامتحانات</a>
+          <a href="reports.html">التقارير</a>
+          <a href="settings.html">الإعدادات</a>
+          <a href="backup.html">النسخ الاحتياطي</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topbar">
+          <div class="brand">
+            <img class="js-institute-logo" alt="الشعار" />
+            <span>الإعدادات العامة</span>
+          </div>
+          <div class="actions">
+            <button class="btn btn-outline" data-action="logout">تسجيل الخروج</button>
+          </div>
+        </div>
+        <div class="content">
+          <form id="settingsForm" class="card" style="display:grid; gap:20px;">
+            <div class="form-grid">
+              <div>
+                <label for="instituteName">اسم المسجد/المعهد *</label>
+                <input id="instituteName" type="text" required />
+              </div>
+              <div>
+                <label for="academicYear">السنة الدراسية *</label>
+                <input id="academicYear" type="text" placeholder="2024-2025" required />
+              </div>
+              <div>
+                <label for="primaryColor">اللون الأساسي</label>
+                <input id="primaryColor" type="color" value="#0ea5e9" />
+              </div>
+              <div>
+                <label for="warningThresholds">مستويات الإنذار (مفصولة بفاصلة)</label>
+                <input id="warningThresholds" type="text" value="3,5,7" />
+              </div>
+              <div>
+                <label for="logoUpload">رفع الشعار</label>
+                <input id="logoUpload" type="file" accept="image/*" />
+              </div>
+            </div>
+
+            <div class="card" style="background:#f8fafc;">
+              <h4>بيانات الدخول</h4>
+              <div class="form-grid">
+                <div>
+                  <label for="adminUsername">اسم المستخدم</label>
+                  <input id="adminUsername" type="text" />
+                </div>
+                <div>
+                  <label for="adminPassword">كلمة المرور</label>
+                  <input id="adminPassword" type="text" />
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">حفظ الإعدادات</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="js/db.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/settings.js"></script>
+  </body>
+</html>
