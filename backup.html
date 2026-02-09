@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>النسخ الاحتياطي | نظام إدارة الحلقات والمعهد الشرعي</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <aside class="sidebar">
+        <div class="logo js-institute-name">نظام إدارة الحلقات والمعهد الشرعي</div>
+        <nav>
+          <a href="dashboard.html">لوحة التحكم</a>
+          <a href="students.html">الطلاب</a>
+          <a href="programs.html">البرامج</a>
+          <a href="attendance.html">الحضور</a>
+          <a href="exams.html">الامتحانات</a>
+          <a href="reports.html">التقارير</a>
+          <a href="settings.html">الإعدادات</a>
+          <a href="backup.html">النسخ الاحتياطي</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topbar">
+          <div class="brand">
+            <img class="js-institute-logo" alt="الشعار" />
+            <span>النسخ الاحتياطي</span>
+          </div>
+          <div class="actions">
+            <button class="btn btn-outline" data-action="logout">تسجيل الخروج</button>
+          </div>
+        </div>
+        <div class="content">
+          <div class="card">
+            <h3>تنزيل نسخة احتياطية</h3>
+            <p class="note">سيتم حفظ جميع البيانات في ملف JSON.</p>
+            <button class="btn btn-primary" id="downloadBackup">تنزيل النسخة الاحتياطية</button>
+          </div>
+          <div class="card">
+            <h3>استعادة نسخة احتياطية</h3>
+            <p class="note">يرجى اختيار ملف JSON تم تنزيله مسبقًا.</p>
+            <input type="file" id="restoreInput" accept="application/json" />
+          </div>
+          <div class="card">
+            <h3>إعادة تعيين النظام</h3>
+            <p class="note">سيتم حذف جميع البيانات وإعادة تهيئة النظام بالبيانات التجريبية.</p>
+            <button class="btn btn-danger" id="resetSystem">إعادة تعيين</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/db.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/backup.js"></script>
+  </body>
+</html>

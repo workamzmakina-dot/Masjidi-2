@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إدارة الطلاب | نظام إدارة الحلقات والمعهد الشرعي</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <aside class="sidebar">
+        <div class="logo js-institute-name">نظام إدارة الحلقات والمعهد الشرعي</div>
+        <nav>
+          <a href="dashboard.html">لوحة التحكم</a>
+          <a href="students.html">الطلاب</a>
+          <a href="programs.html">البرامج</a>
+          <a href="attendance.html">الحضور</a>
+          <a href="exams.html">الامتحانات</a>
+          <a href="reports.html">التقارير</a>
+          <a href="settings.html">الإعدادات</a>
+          <a href="backup.html">النسخ الاحتياطي</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topbar">
+          <div class="brand">
+            <img class="js-institute-logo" alt="الشعار" />
+            <span>إدارة الطلاب</span>
+          </div>
+          <div class="actions">
+            <button class="btn btn-outline" data-action="logout">تسجيل الخروج</button>
+          </div>
+        </div>
+        <div class="content">
+          <div class="card">
+            <h3>إضافة / تعديل طالب</h3>
+            <form id="studentForm" class="form-grid">
+              <input type="hidden" id="studentId" />
+              <div>
+                <label for="studentName">اسم الطالب *</label>
+                <input id="studentName" type="text" required />
+              </div>
+              <div>
+                <label for="studentLevel">المستوى *</label>
+                <input id="studentLevel" type="text" required />
+              </div>
+              <div>
+                <label for="studentStatus">الحالة</label>
+                <select id="studentStatus">
+                  <option value="نشط">نشط</option>
+                  <option value="مجمّد">مجمّد</option>
+                  <option value="مطرود">مطرود</option>
+                </select>
+              </div>
+              <div>
+                <label for="studentStatusReason">سبب الحالة</label>
+                <input id="studentStatusReason" type="text" />
+              </div>
+              <div style="align-self: end;">
+                <button class="btn btn-primary" type="submit">حفظ الطالب</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <h3>ترفيع الطلاب</h3>
+            <div style="display:flex; gap:12px; align-items:center;">
+              <input id="promoteLevel" type="text" placeholder="المستوى الجديد" />
+              <button class="btn btn-warning" id="promoteBtn">ترفيع الكل</button>
+            </div>
+            <p class="note">سيتم تطبيق المستوى الجديد على جميع الطلاب الحاليين.</p>
+          </div>
+
+          <div class="card">
+            <h3>قائمة الطلاب</h3>
+            <div class="form-grid">
+              <div>
+                <label for="searchStudent">بحث</label>
+                <input id="searchStudent" type="text" placeholder="ابحث بالاسم" />
+              </div>
+              <div>
+                <label for="filterStatus">فلترة بالحالة</label>
+                <select id="filterStatus">
+                  <option value="">الكل</option>
+                  <option value="نشط">نشط</option>
+                  <option value="مجمّد">مجمّد</option>
+                  <option value="مطرود">مطرود</option>
+                </select>
+              </div>
+              <div>
+                <label for="filterLevel">فلترة بالمستوى</label>
+                <input id="filterLevel" type="text" placeholder="مثال: الثاني" />
+              </div>
+            </div>
+            <div style="overflow:auto; margin-top:16px;">
+              <table class="table" id="studentsTable">
+                <thead>
+                  <tr>
+                    <th>الاسم</th>
+                    <th>المستوى</th>
+                    <th>الحالة</th>
+                    <th>السبب</th>
+                    <th>الإجراءات</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="pagination" id="studentsPagination"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/db.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/students.js"></script>
+  </body>
+</html>

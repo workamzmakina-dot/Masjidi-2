@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>التقارير | نظام إدارة الحلقات والمعهد الشرعي</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <aside class="sidebar">
+        <div class="logo js-institute-name">نظام إدارة الحلقات والمعهد الشرعي</div>
+        <nav>
+          <a href="dashboard.html">لوحة التحكم</a>
+          <a href="students.html">الطلاب</a>
+          <a href="programs.html">البرامج</a>
+          <a href="attendance.html">الحضور</a>
+          <a href="exams.html">الامتحانات</a>
+          <a href="reports.html">التقارير</a>
+          <a href="settings.html">الإعدادات</a>
+          <a href="backup.html">النسخ الاحتياطي</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topbar">
+          <div class="brand">
+            <img class="js-institute-logo" alt="الشعار" />
+            <span>تقارير الطلاب</span>
+          </div>
+          <div class="actions">
+            <button class="btn btn-outline" data-action="logout">تسجيل الخروج</button>
+          </div>
+        </div>
+        <div class="content">
+          <div class="card">
+            <div class="form-grid">
+              <div>
+                <label for="reportStudent">اختر الطالب</label>
+                <select id="reportStudent"></select>
+              </div>
+              <div style="align-self:end; display:flex; gap:8px;">
+                <button class="btn btn-primary" id="printReport">طباعة التقرير</button>
+                <a class="btn btn-success" id="whatsappLink" target="_blank">إرسال تقرير واتساب</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>ملخص الطالب</h3>
+            <div class="grid grid-3">
+              <div>
+                <span class="note">الاسم</span>
+                <p id="reportStudentName"></p>
+              </div>
+              <div>
+                <span class="note">المستوى</span>
+                <p id="reportStudentLevel"></p>
+              </div>
+              <div>
+                <span class="note">الحالة</span>
+                <p id="reportStudentStatus"></p>
+              </div>
+            </div>
+            <p id="reportAttendanceSummary"></p>
+            <p>متوسط الدرجات: <strong id="reportAverage">0%</strong></p>
+          </div>
+
+          <div class="card">
+            <h3>الإنذارات</h3>
+            <ul id="reportWarnings"></ul>
+          </div>
+
+          <div class="card">
+            <h3>كشف الدرجات</h3>
+            <canvas id="gradesChart" width="600" height="200"></canvas>
+            <div style="overflow:auto; margin-top:16px;">
+              <table class="table" id="reportGrades">
+                <thead>
+                  <tr>
+                    <th>الامتحان</th>
+                    <th>البرنامج</th>
+                    <th>الدرجة</th>
+                    <th>النسبة</th>
+                    <th>التقدير</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/db.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/reports.js"></script>
+  </body>
+</html>
