@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل الدخول | نظام إدارة الحلقات والمعهد الشرعي</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="login-page">
+  <main class="auth-card">
+    <h1>نظام إدارة الحلقات والمعهد الشرعي</h1>
+    <p class="muted">تسجيل الدخول للمنصة</p>
+    <form id="loginForm">
+      <label>اسم المستخدم<input required id="username" /></label>
+      <label>كلمة المرور<input required type="password" id="password" /></label>
+      <button type="submit" class="btn primary">الدخول إلى المركز</button>
+    </form>
+    <p class="muted small">حساب افتراضي: admin / admin123</p>
+  </main>
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>

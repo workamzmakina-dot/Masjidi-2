@@ -1,0 +1,9 @@
+import {db} from './db.js';import {buildShell,requireAuth,hijriAndGreg} from './app.js';requireAuth();await db.init();
+const students=await db.list('students');const warnings=await db.list('warnings');const attendance=await db.list('attendance');const grades=await db.list('grades');const exams=await db.list('exams');const settings=await db.get('settings',1);const employees=await db.list('employees');
+await buildShell('reports.html','تقارير تفصيلية',`<section class="panel"><h3>تقرير طالب</h3><form id="rf" class="grid-2"><select id="studentId"></select><button class="btn primary">إنشاء تقرير</button></form><div id="out"></div></section><section class="panel"><h3>تقارير الرواتب والموظفين</h3><div id="emp"></div></section>`);
+studentId.innerHTML=students.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');
+rf.onsubmit=e=>{e.preventDefault();const s=students.find(x=>x.id==studentId.value);const a=attendance.filter(x=>x.studentId===s.id);const present=a.filter(x=>x.present).length;const absent=a.length-present;const w=warnings.filter(x=>x.studentId===s.id);const g=grades.filter(x=>x.studentId===s.id);const avg=g.length?(g.reduce((n,x)=>n+x.percent,0)/g.length):0;const {g:gd,h}=hijriAndGreg();out.innerHTML=`<h4>${settings.centerName}</h4><p>${gd} | ${h}</p><p>الطالب: ${s.name}</p><p>الحضور: ${present} - الغياب: ${absent}</p><p>الإنذارات: ${w.length}</p><p>متوسط الدرجات: ${avg.toFixed(1)}%</p><button onclick="print()" class="btn">طباعة</button><a class="btn" target="_blank" href="https://wa.me/${s.guardianPhone||''}?text=${encodeURIComponent(`تقرير الطالب ${s.name}
+الحضور:${present}/${a.length}
+المتوسط:${avg.toFixed(1)}%
+ملاحظات:${w.slice(-1)[0]?.note||'لا يوجد'}`)}">إرسال واتساب</a>`;};
+emp.innerHTML=employees.map(e=>`<div>${e.name} - ${e.job} - ${e.salary} ${e.currency} - ${e.paidMonth?'تم الاستلام':'لم يستلم'}</div>`).join('');

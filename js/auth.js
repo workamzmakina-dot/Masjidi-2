@@ -1,0 +1,3 @@
+import {db} from './db.js';import {toast} from './app.js';
+await db.init();document.getElementById('loginForm')?.addEventListener('submit',async e=>{e.preventDefault();const username=usernameEl.value.trim();const password=passwordEl.value.trim();const users=await db.list('users');const user=users.find(u=>u.username===username&&u.password===password);if(!user){toast('بيانات غير صحيحة');return;}sessionStorage.setItem('session',JSON.stringify(user));location.href='dashboard.html';});
+const usernameEl=document.getElementById('username');const passwordEl=document.getElementById('password');
