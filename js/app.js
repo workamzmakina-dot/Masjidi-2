@@ -1,0 +1,9 @@
+import {db} from './db.js';
+export function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2500)}
+export function requireAuth(){const s=sessionStorage.getItem('session');if(!s){location.href='index.html';throw new Error('no auth')}return JSON.parse(s)}
+export async function buildShell(active,title,content){await db.init();const st=(await db.get('settings',1))||{};document.documentElement.style.setProperty('--primary',st.primaryColor||'#1d4ed8');document.getElementById('appShell').innerHTML=`<div class="layout"><aside class="sidebar" id="sb"><h3>${st.centerName||'المعهد'}</h3><a href="dashboard.html">لوحة التحكم</a><a href="students.html">الطلاب والمالية</a><a href="programs.html">البرامج والمعلمين</a><a href="attendance.html">الحضور وQR</a><a href="exams.html">الامتحانات</a><a href="reports.html">التقارير</a><a href="settings.html">الإعدادات</a><a href="backup.html">نسخ احتياطي</a></aside><main class="content"><div class="topbar"><button class="mobile-toggle btn" id="mb">☰</button><strong>${title}</strong><button class="btn" id="logout">خروج</button></div>${content}</main></div>`;document.querySelectorAll('.sidebar a').forEach(a=>{if(a.getAttribute('href')===active)a.classList.add('active')});document.getElementById('logout').onclick=()=>{sessionStorage.removeItem('session');location.href='index.html'};document.getElementById('mb').onclick=()=>document.getElementById('sb').classList.toggle('open');
+}
+export const gradeLabel=p=>p>=90?'ممتاز':p>=80?'جيد جدًا':p>=70?'جيد':p>=60?'مقبول':'راسب';
+export const fmtDualCurrency=(usd,lbp)=>`$${usd||0} / ل.ل ${lbp||0}`;
+export function hijriAndGreg(){const g=new Date().toLocaleDateString('ar');const h=new Intl.DateTimeFormat('ar-TN-u-ca-islamic',{dateStyle:'full'}).format(new Date());return {g,h};}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}

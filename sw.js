@@ -1,0 +1,1 @@
+self.addEventListener('install',e=>{e.waitUntil(caches.open('masjidi-v1').then(c=>c.addAll(['./','index.html','dashboard.html','css/style.css','js/app.js','js/db.js'])))});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))});

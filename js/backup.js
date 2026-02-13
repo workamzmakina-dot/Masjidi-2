@@ -1,0 +1,5 @@
+import {db} from './db.js';import {buildShell,requireAuth,toast} from './app.js';requireAuth();await db.init();
+await buildShell('backup.html','النسخ الاحتياطي',`<section class="panel"><button id="exp" class="btn primary">تنزيل JSON</button></section><section class="panel"><input type="file" id="imp" accept="application/json"><button id="impBtn" class="btn">استعادة</button></section><section class="panel"><button id="reset" class="btn danger">إعادة تعيين النظام</button></section>`);
+exp.onclick=async()=>{const data=await db.exportAll();const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='masjidi-backup.json';a.click();};
+impBtn.onclick=async()=>{if(!imp.files[0]) return;const txt=await imp.files[0].text();if(confirm('تأكيد الاستعادة؟')){await db.importAll(JSON.parse(txt));toast('تمت الاستعادة');}};
+reset.onclick=async()=>{if(confirm('تأكيد المسح الكامل؟')){await db.clearAll();location.reload();}};
